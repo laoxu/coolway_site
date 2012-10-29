@@ -13,7 +13,7 @@ class User(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=192, blank=True)
     password = models.CharField(max_length=192, blank=True)
-    email = models.CharField(max_length=384, blank=True)
+    email = models.EmailField(max_length=384, blank=True)
     sex = models.CharField(max_length=18, blank=True)
     status = models.CharField(max_length=24, blank=True)
     photos = models.CharField(max_length=1536, blank=True)
