@@ -1,0 +1,12 @@
+<html>
+<body>
+post size is :{{ size }}
+
+<ul>
+{% for item in post_list %}
+    <li>title:{{ item.title }},content:{{item.content}}</li>
+
+{% endfor %}
+</ul>
+</body>
+</html>

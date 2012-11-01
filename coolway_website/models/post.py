@@ -18,3 +18,6 @@ class Post(models.Model):
     last_reply_time = models.DateTimeField(null=True, blank=True)
     class Meta:
         db_table = u'post'
+
+    def __unicode__(self):
+        return self.title or unicode(self.content)
