@@ -1,12 +1,13 @@
-<html>
-<body>
-post size is :{{ size }}
+{% extends 'base.html' %}
 
-<ul>
-{% for item in post_list %}
-    <li>title:{{ item.title }},content:{{item.content}}</li>
-
-{% endfor %}
-</ul>
-</body>
-</html>
+{% block content %}
+    {% if post_list %}
+    <ul>
+    {% for post in post_list %}
+        <li>{{ post.title }} </li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    You don't have webnotes
+    {% endif %}
+{% endblock %}
