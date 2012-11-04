@@ -2,6 +2,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
 
 from ..models.area import Area
 
@@ -9,11 +10,10 @@ from . import get_backend
 
 import datetime
 
+@login_required
 def user_page(request):
-    name = "程东"
-    list = Area.objects.all()
-    print list
-    return render_to_response('users/home_page.html', {'user_name': name})
+    current_date = datetime.datetime.now()
+    return render_to_response('index.html', {'current_date': current_date})
 
 def hours_ahead(request,offset):
     try:

@@ -5,6 +5,7 @@ from django.views.generic.simple import direct_to_template
 from views import activate
 from views import register
 from django.contrib.auth import views as auth_views
+from views import user_page
 
 
 urlpatterns = patterns('',
@@ -58,4 +59,5 @@ urlpatterns = patterns('',
                            direct_to_template,
                            {'template': 'accounts/registration_closed.html'},
                            name='accounts_disallowed'),
+                       url(r'^query/$',user_page),
                       )
