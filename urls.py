@@ -7,7 +7,7 @@ from coolway_website.views import *
 
 urlpatterns = patterns('',
     url(r'^$', index,name='index'),
-    url(r'^user/',include('coolway_website.user.urls')),
+    url(r'^user/',include('coolway_website.accounts.urls')),
     url(r'^post/',include('coolway_website.forum.urls')),
 )
 #handler404 = 'coolway.views.meta.page'

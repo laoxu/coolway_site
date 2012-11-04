@@ -1,0 +1,10 @@
+{% extends "accounts/registration_base.html" %}
+{% block title %}注册{% endblock %}
+{% block content %}
+<table>
+    <form method='post' action=''>{% csrf_token %}
+        {{ form }}
+        <tr><td></td><td><input type="submit" value="发送激活邮件" /></td>
+    </form>
+</table>
+{% endblock %}
