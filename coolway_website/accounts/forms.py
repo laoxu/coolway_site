@@ -28,7 +28,7 @@ class RegistrationForm(forms.Form):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
                                 label=_("Password (again)"))
     openCompanys = Company.objects.all()
-    company = forms.ChoiceField(widget=forms.Select(attrs=attrs_dict), choices=[(company.emailsuffix,company.name) for company in openCompanys],label="choose company")
+    company = forms.ChoiceField(widget=forms.Select(attrs=attrs_dict), choices=[(company.emailsuffix,company.emailsuffix) for company in openCompanys],label="choose company")
     
     def clean_username(self):
         existing = User.objects.filter(username__iexact=self.cleaned_data['username'])
