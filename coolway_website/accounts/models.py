@@ -179,9 +179,9 @@ class RegistrationProfile(models.Model):
     objects = RegistrationManager()
     
     class Meta:
-        verbose_name = _('registration profile')
-        verbose_name_plural = _('registration profiles')
-        db_table = u'registration_registrationprofile'
+        verbose_name = _('user profile')
+        verbose_name_plural = _('user profiles')
+        db_table = u'user_profile'
     
     def __unicode__(self):
         return u"Registration information for %s" % self.user
