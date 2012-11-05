@@ -70,3 +70,10 @@ class RegistrationFormUniqueEmail(RegistrationForm):
         if User.objects.filter(email__iexact=self.cleaned_data['email']):
             raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
         return self.cleaned_data['email']
+
+class UserProfile(forms.Form):
+    sex = forms.ChoiceField(widget=forms.Select(attrs=attrs_dict), choices=[(k,k) for k in ['male','female']],label="sex")
+    photos = forms.CharField(widget=forms.TextInput(attrs=attrs_dict),label=_("photos"))
+    address = forms.CharField(widget=forms.TextInput(attrs=attrs_dict),label=_("address"))
+    description = forms.CharField(widget=forms.Textarea(attrs=attrs_dict),label=_("description"))
+        

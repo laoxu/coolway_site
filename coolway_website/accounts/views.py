@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 
 from ..models.area import Area
+from forms import UserProfile
 
 from . import get_backend
 
@@ -91,3 +92,14 @@ def register(request, backend, success_url=None, form_class=None,
     return render_to_response(template_name,
                               {'form': form},
                               context_instance=context)
+
+@login_required
+def profile(request,template_name='accounts/user_profile.html'):
+
+    form = UserProfile()
+    if request.method == 'POST':
+        print 'post method'
+    else:
+        print 'get method'
+
+    return render_to_response(template_name,{'form': form},context_instance=RequestContext(request))

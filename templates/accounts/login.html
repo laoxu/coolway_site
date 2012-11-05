@@ -17,9 +17,9 @@
     <td>{{ form.password }}</td>
 </tr>
 </table>
-<p><a href="{% url auth_password_reset %}">Forgot</a> your password?  <a href="{% url accounts_register %}">Need an account</a>?</p>
+<p><a href="{% url auth_password_reset %}">忘记密码</a> 或  <a href="{% url accounts_register %}">注册</a>?</p>
 
-<input type="submit" value="login" />
+<input type="submit" value="登录" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
 

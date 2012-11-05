@@ -10,6 +10,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+AUTH_PROFILE_MODULE = 'coolway_website.accounts.models.RegistrationProfile'
+
 from settings_local import *
 
 # Local time zone for this installation. Choices can be found here:
