@@ -96,6 +96,8 @@ def register(request, backend, success_url=None, form_class=None,
 @login_required
 def profile(request,template_name='accounts/user_profile.html'):
 
+    print request.user.get_profile().activation_key
+
     form = UserProfile()
     if request.method == 'POST':
         print 'post method'

@@ -10,7 +10,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-AUTH_PROFILE_MODULE = 'coolway_website.accounts.models.RegistrationProfile'
+AUTH_PROFILE_MODULE = 'accounts.RegistrationProfile'
 
 from settings_local import *
 
