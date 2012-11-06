@@ -73,7 +73,7 @@ class RegistrationFormUniqueEmail(RegistrationForm):
 
 class UserProfile(forms.Form):
     sex = forms.ChoiceField(widget=forms.Select(attrs=attrs_dict), choices=[(k,k) for k in ['male','female']],label="sex")
-    photos = forms.CharField(widget=forms.TextInput(attrs=attrs_dict),label=_("photos"))
+    photos = forms.Field(widget=forms.FileInput(attrs=attrs_dict),label=_("photos"),required=False)
     address = forms.CharField(widget=forms.TextInput(attrs=attrs_dict),label=_("address"))
     description = forms.CharField(widget=forms.Textarea(attrs=attrs_dict),label=_("description"))
         

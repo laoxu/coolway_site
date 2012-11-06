@@ -36,7 +36,7 @@ def hello(request):
 
 
 def activate(request, backend,
-             template_name='registration/activate.html',
+             template_name='accounts/activate.html',
              success_url=None, extra_context=None, **kwargs):
 
     backend = get_backend(backend)
@@ -96,7 +96,8 @@ def register(request, backend, success_url=None, form_class=None,
 @login_required
 def profile(request,template_name='accounts/user_profile.html'):
 
-    print request.user.get_profile().activation_key
+    if request.user.is_authenticated():
+        print request.user.get_profile().activation_key
 
     form = UserProfile()
     if request.method == 'POST':
