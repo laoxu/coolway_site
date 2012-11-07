@@ -16,23 +16,12 @@ def user_page(request):
     current_date = datetime.datetime.now()
     return render_to_response('index.html', {'current_date': current_date})
 
-def hours_ahead(request,offset):
-    try:
-        offset = int(offset)
-    except ValueError:
-        raise Http404
-    dt = datetime.datetime.now() + datetime.timedelta(hours=offset)
-    html = "<html><body>In %s hours(s), it will be %s.</body></html>" % (offset,dt)
-    return HttpResponse(html)
 
 def login():
     pass
 
 def logout():
     pass
-
-def hello(request):
-    return HttpResponse("hello world")
 
 
 def activate(request, backend,
@@ -64,7 +53,7 @@ def register(request, backend, success_url=None, form_class=None,
              disallowed_url='registration_disallowed',
              template_name='accounts/registration_form.html',
              extra_context=None):
- 
+
     backend = get_backend(backend)
     if not backend.registration_allowed(request):
         return redirect(disallowed_url)
@@ -82,7 +71,7 @@ def register(request, backend, success_url=None, form_class=None,
                 return redirect(success_url)
     else:
         form = form_class()
-    
+
     if extra_context is None:
         extra_context = {}
     context = RequestContext(request)

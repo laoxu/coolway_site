@@ -31,11 +31,11 @@ AUTHORITY_CHOICES = (
 
 class PostManager(models.Manager):
 
-    def visible_in_company(self):
+    def getPostAuthCompany(self):
         '''只在公司范围可见的帖子'''
         return self.visible().filter(authority=COMPANY_AUTHORITY_POST)
 
-    def visible_public(self):
+    def getPostAuthPublic(self):
         '''所有公开的的帖子'''
         return self.visible().filter(authority=PUBLIC_AUTHORITY_POST)
 
@@ -73,8 +73,3 @@ class Post(models.Model):
     def get_absolute_url(self):
         return ('post_detail', [str(self.id)])
 
-class ClassName(object):
-    """docstring for ClassName"""
-    def __init__(self, arg):
-        super(ClassName, self).__init__()
-        self.arg = arg

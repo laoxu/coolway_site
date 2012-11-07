@@ -35,7 +35,7 @@ def post_list(request):
         company_id = int(company_id)
     except ValueError:
         raise Http404
-    post_list = Post.objects.visible_in_company().filter(company=company_id)
+    post_list = Post.objects.getPostAuthCompany().filter(company=company_id)
     paginator = Paginator(post_list, POST_PAGE_SIZE) # Show 25 posts per page
     posts = fetch_paged_object_list(paginator,page)
     return render_to_response('post/list.html', {"posts": posts})
@@ -49,7 +49,7 @@ def post_detail(request,post_id):
         raise Http404
     post = Post.objects.filter(pk=post_id)
     if post :
-        reply_list = PostReply.objects.get_visible_reply(post_id)
+        reply_list = PostReply.objects.getByPost(post_id)
         paginator = Paginator(reply_list, REPLY_PAGE_SIZE)
         replys = fetch_paged_object_list(paginator,page)
     else:
@@ -57,7 +57,7 @@ def post_detail(request,post_id):
     return render_to_response('post/detail.html',{'post':post,'replys':replys})
 
 #回帖:回帖成功跳转到帖子最后一页
-@login_required
+#@login_required
 def post_reply(request,post_id):
     pass
 
