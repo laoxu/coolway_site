@@ -31,11 +31,11 @@ AUTHORITY_CHOICES = (
 
 class PostManager(models.Manager):
 
-    def company(self):
+    def visible_in_company(self):
         '''只在公司范围可见的帖子'''
         return self.visible().filter(authority=COMPANY_AUTHORITY_POST)
 
-    def public(self):
+    def visible_public(self):
         '''所有公开的的帖子'''
         return self.visible().filter(authority=PUBLIC_AUTHORITY_POST)
 

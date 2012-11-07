@@ -19,7 +19,7 @@ STATUS_CHOICES = (
 
 class PostReplyManager(models.Manager):
 
-    def get_visible_by_post(self,postId):
+    def get_visible_reply(self,postId):
         return self.visible().filter(post=postId)
 
     def visible(self):

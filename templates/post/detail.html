@@ -1,0 +1,22 @@
+{{ post.title }}
+{{ post.content }}
+
+{% for reply in replys %}
+    {# Each "reply" is a Contact model object. #}
+    {{ reply.post }}<br />
+    {{ reply.content }}<br />
+{% endfor %}
+
+<div >
+    <span >
+        {% if replys.has_previous %}
+            <a href="?page={{ replys.previous_page_number }}">previous</a>
+        {% endif %}
+        <span >
+            Page {{ replys.number }} of {{ replys.paginator.num_pages }}.
+        </span>
+        {% if replys.has_next %}
+            <a href="?page={{ replys.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>

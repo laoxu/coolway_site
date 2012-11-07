@@ -1,0 +1,20 @@
+
+{% for post in posts %}
+    {# Each "post" is a Contact model object. #}
+    {{ post.title }}<br />
+    {{ post.content }}<br />
+{% endfor %}
+
+<div >
+    <span >
+        {% if posts.has_previous %}
+            <a href="?page={{ posts.previous_page_number }}">previous</a>
+        {% endif %}
+        <span >
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
