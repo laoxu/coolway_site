@@ -112,7 +112,7 @@ INSTALLED_APPS = (
     'coolway_website.accounts',
     'coolway_website.admin',
     'coolway_website.company',
-    'coolway_website.forum',
+    'coolway_website.post',
     'debug_toolbar',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
