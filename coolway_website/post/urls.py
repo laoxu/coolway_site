@@ -16,6 +16,9 @@ urlpatterns = patterns('',
         views.post_create,
         name = 'post_create'
     ),
+    url(r'^/(\d+)/$',
+        views.post_detail,
+        name = 'post_detail'),
     # url(
     #     r'^(?P<feed_type_slug>[-\w]+)/$',
     #     views.post_detail,
