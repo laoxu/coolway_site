@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import datetime
 import hashlib
 import random
@@ -14,6 +15,15 @@ try:
     from django.utils.timezone import now as datetime_now
 except ImportError:
     datetime_now = datetime.datetime.now
+
+
+SEX_MALE=u'male'
+SEX_FEMALE=u'female'
+
+SEX_CHOICES = (
+    (SEX_MALE, u'男'),
+    (SEX_FEMALE, u'女')
+)
 
 
 SHA1_RE = re.compile('^[a-f0-9]{40}$')
@@ -175,6 +185,7 @@ class RegistrationProfile(models.Model):
     
     user = models.ForeignKey(User, unique=True, verbose_name=_('user'))
     activation_key = models.CharField(_('activation key'), max_length=40)
+    photos= models.ImageField(upload_to='photos/%Y/%m/%d', blank=True,null=True)
     
     objects = RegistrationManager()
     

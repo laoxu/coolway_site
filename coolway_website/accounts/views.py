@@ -90,8 +90,15 @@ def profile(request,template_name='accounts/user_profile.html'):
 
     form = UserProfile()
     if request.method == 'POST':
-        print 'post method'
+        if 'photos' in request.FILES:
+            profile = request.user.get_profile()
+            profile.photos =  request.FILES["photos"]
+            profile.save()
     else:
         print 'get method'
+
+    print request.FILES
+
+    
 
     return render_to_response(template_name,{'form': form},context_instance=RequestContext(request))

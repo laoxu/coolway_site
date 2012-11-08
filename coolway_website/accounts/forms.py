@@ -10,6 +10,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from coolway_website.models.company import Company
+from .models import SEX_CHOICES
 
 attrs_dict = {'class': 'required'}
 
@@ -72,8 +73,9 @@ class RegistrationFormUniqueEmail(RegistrationForm):
         return self.cleaned_data['email']
 
 class UserProfile(forms.Form):
-    sex = forms.ChoiceField(widget=forms.Select(attrs=attrs_dict), choices=[(k,k) for k in ['male','female']],label="sex")
-    photos = forms.Field(widget=forms.FileInput(attrs=attrs_dict),label=_("photos"),required=False)
+    sex = forms.ChoiceField(widget=forms.Select(attrs=attrs_dict), choices=SEX_CHOICES,label="sex")
+    photos = forms.ImageField(required=False)
+    #photos = forms.Field(widget=forms.FileInput(attrs=attrs_dict),label=_("photos"),required=False)
     address = forms.CharField(widget=forms.TextInput(attrs=attrs_dict),label=_("address"))
     description = forms.CharField(widget=forms.Textarea(attrs=attrs_dict),label=_("description"))
         

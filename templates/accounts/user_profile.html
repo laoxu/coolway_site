@@ -2,7 +2,7 @@
 {% block title %}填写用户信息{% endblock %}
 {% block content %}
 <table>
-    <form method='post' action=''>{% csrf_token %}
+    <form method='post' action='' enctype="multipart/form-data">{% csrf_token %}
         {{ form }}
         <tr><td></td><td><input type="submit" value="保存" /></td>
     </form>
