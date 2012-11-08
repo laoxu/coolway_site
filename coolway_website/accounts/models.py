@@ -185,7 +185,7 @@ class RegistrationProfile(models.Model):
     
     user = models.ForeignKey(User, unique=True, verbose_name=_('user'))
     activation_key = models.CharField(_('activation key'), max_length=40)
-    photos= models.ImageField(upload_to='photos/%Y/%m/%d', blank=True,null=True)
+    photos= models.ImageField(upload_to='images/%Y/%m/%d', blank=True,null=True)
     
     objects = RegistrationManager()
     

@@ -22,3 +22,5 @@ EMAIL_HOST_USER='xinyun@coolway.me'
 EMAIL_HOST_PASSWORD='hello1234'
 EMAIL_USE_TLS = False
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+STATIC_PATH='./images'
