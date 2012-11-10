@@ -1,11 +1,16 @@
-{{ post.title }}
-{{ post.content }}
+{{ postObj.title }} <br />
+{{ postObj.content }} <br />
 
 {% for reply in replys %}
     {# Each "reply" is a Contact model object. #}
-    {{ reply.post }}<br />
+
     {{ reply.content }}<br />
 {% endfor %}
+
+<form action="reply/" method="post">{% csrf_token %}
+	{{ form.as_p }}
+<input type="submit" value="回复" />
+</form>
 
 <div >
     <span >
@@ -20,3 +25,4 @@
         {% endif %}
     </span>
 </div>
+

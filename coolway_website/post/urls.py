@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-
 from django.conf.urls.defaults import *
 from . import views
 
@@ -13,7 +12,7 @@ urlpatterns = patterns('',
         views.post_detail,
         name = 'post_detail'),
 
-    url(r'^(?P<post_id>\d+)/$',
+    url(r'^(?P<post_id>\d+)/reply/$',
         views.post_reply,
         name = 'post_reply'),
 )
