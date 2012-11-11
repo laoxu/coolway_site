@@ -3,9 +3,14 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+
+from PIL import Image
+import uuid
 
 from ..models.area import Area
 from forms import UserProfile
+from models import SEX_CHOICES
 
 from . import get_backend
 
@@ -88,17 +93,28 @@ def profile(request,template_name='accounts/user_profile.html'):
     if request.user.is_authenticated():
         print request.user.get_profile().activation_key
 
-    form = UserProfile()
-    if request.method == 'POST':
-        if 'photos' in request.FILES:
-            profile = request.user.get_profile()
-            profile.photos =  request.FILES["photos"]
-            profile.save()
-    else:
-        print 'get method'
-
-    print request.FILES
-
     
+    if request.method == 'POST':
+        form = UserProfile(request.POST)
+        if form.is_valid():
+            sex = form.cleaned_data['sex']
+            description = form.cleaned_data['description']
+            profile = request.user.get_profile()
+            if 'photos' in request.FILES:
+                profile.photos = request.FILES["photos"]
+                profile.sex = form.cleaned_data['sex']
+                profile.description = form.cleaned_data['description']
+
+            if sex in SEX_CHOICES:
+                profile.sex = sex;
+            
+            if description !=None and description !="":
+                profile.description = description;
+
+            profile.save()
+        else:
+            form = UserProfile()
+    else:
+        form = UserProfile()
 
     return render_to_response(template_name,{'form': form},context_instance=RequestContext(request))

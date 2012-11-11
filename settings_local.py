@@ -24,6 +24,3 @@ EMAIL_USE_TLS = False
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 STATIC_PATH='./images'
-
-UPLOAD_PATH_PATH='E:/GitHub/coolway_site'
-UPLOAD_FILE_DIR='/images'

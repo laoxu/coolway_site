@@ -1,10 +1,24 @@
-{% extends "accounts/registration_base.html" %}
-{% block title %}注册{% endblock %}
 {% block content %}
-<table>
     <form method='post' action=''>{% csrf_token %}
-        {{ form }}
-        <tr><td></td><td><input type="submit" value="发送激活邮件" /></td>
+    	{{ form.non_field_errors }}
+    	{{ form.company.errors }}
+    	<div class="field">
+    		{{ form.email.errors }}
+    		<label for="id_username">username:</label>
+    		{{ form.username }} @ {{ form.company }}
+    	</div>
+    	<div class="field">
+    		{{ form.password1.errors }}
+    		<label for="id_password1">Password:</label>
+    		{{ form.password1 }}
+    	</div>
+    	<div class="field">
+    		{{ form.password2.errors }}
+    		<label for="id_password2">Password (again):</label>
+    		{{ form.password2 }}
+    	</div>
+    
+        <input type="submit" value="发送激活邮件" />
+
     </form>
-</table>
 {% endblock %}

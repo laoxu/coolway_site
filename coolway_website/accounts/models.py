@@ -11,6 +11,8 @@ from django.db import transaction
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
+from ..models.thumbs import ImageWithThumbsField
+
 try:
     from django.utils.timezone import now as datetime_now
 except ImportError:
@@ -185,8 +187,10 @@ class RegistrationProfile(models.Model):
     
     user = models.ForeignKey(User, unique=True, verbose_name=_('user'))
     activation_key = models.CharField(_('activation key'), max_length=40)
-    photos= models.ImageField(upload_to='images/%Y/%m/%d', blank=True,null=True)
-    
+    photos = ImageWithThumbsField(upload_to='images/%Y/%m/%d', sizes=((125,125),(200,200)))
+    sex = models.CharField(max_length=16, blank=True,choices=SEX_CHOICES)
+    description = models.CharField(max_length=128, blank=True)
+
     objects = RegistrationManager()
     
     class Meta:

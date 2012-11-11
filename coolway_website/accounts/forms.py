@@ -21,9 +21,6 @@ class RegistrationForm(forms.Form):
                                 widget=forms.TextInput(attrs=attrs_dict),
                                 label=_("Username"),
                                 error_messages={'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
-    email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
-                                                               maxlength=75)),
-                             label=_("E-mail"))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
                                 label=_("Password"))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
@@ -31,12 +28,6 @@ class RegistrationForm(forms.Form):
     openCompanys = Company.objects.all()
     company = forms.ChoiceField(widget=forms.Select(attrs=attrs_dict), choices=[(company.emailsuffix,company.emailsuffix) for company in openCompanys],label="choose company")
     
-    def clean_username(self):
-        existing = User.objects.filter(username__iexact=self.cleaned_data['username'])
-        if existing.exists():
-            raise forms.ValidationError(_("A user with that username already exists."))
-        else:
-            return self.cleaned_data['username']
 
 
 class RegistrationFormUniqueEmail(RegistrationForm):
@@ -54,28 +45,23 @@ class RegistrationFormUniqueEmail(RegistrationForm):
         site.
         
         """
-        email_domain = self.cleaned_data['email'].split('@')[1]
-
-        if  self.cleaned_data['company'] !=  email_domain:
-            raise forms.ValidationError(_("input correct email"))
 
         if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data:
             if self.cleaned_data['password1'] != self.cleaned_data['password2']:
                 raise forms.ValidationError(_("The two password fields didn't match."))
-        return self.cleaned_data
 
-        # 这里跳转到公司注册申请页面
-        if email_domain not in self.open_domains:
+        # 这里跳转到公司注册申请页面 
+        if self.cleaned_data['company'] not in self.open_domains:
             raise forms.ValidationError(_("not open register for your company,please apply"))
 
-        if User.objects.filter(email__iexact=self.cleaned_data['email']):
+        if User.objects.filter(email__iexact='%s@%s'%(self.cleaned_data['username'],self.cleaned_data['company'])):
             raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
-        return self.cleaned_data['email']
+        return self.cleaned_data
 
 class UserProfile(forms.Form):
     sex = forms.ChoiceField(widget=forms.Select(attrs=attrs_dict), choices=SEX_CHOICES,label="sex")
     photos = forms.ImageField(required=False)
-    #photos = forms.Field(widget=forms.FileInput(attrs=attrs_dict),label=_("photos"),required=False)
-    address = forms.CharField(widget=forms.TextInput(attrs=attrs_dict),label=_("address"))
     description = forms.CharField(widget=forms.Textarea(attrs=attrs_dict),label=_("description"))
-        
+
+    def clean(self):
+        return self.cleaned_data

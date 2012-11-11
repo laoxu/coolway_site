@@ -11,7 +11,8 @@ class DefaultBackend(object):
  
     def register(self, request, **kwargs):
        
-        username, email, password, company = kwargs['username'], kwargs['email'], kwargs['password1'], kwargs['company']
+        username, password = '%s@%s'%(kwargs['username'],kwargs['company']), kwargs['password1']
+        email = username
         if Site._meta.installed:
             site = Site.objects.get_current()
         else:
