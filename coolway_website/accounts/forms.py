@@ -54,7 +54,7 @@ class RegistrationFormUniqueEmail(RegistrationForm):
         if self.cleaned_data['company'] not in self.open_domains:
             raise forms.ValidationError(_("not open register for your company,please apply"))
 
-        if User.objects.filter(email__iexact='%s@%s'%(self.cleaned_data['username'],self.cleaned_data['company'])):
+        if User.objects.filter(email__iexact='%s%s'%(self.cleaned_data['username'],self.cleaned_data['company'])):
             raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
         return self.cleaned_data
 

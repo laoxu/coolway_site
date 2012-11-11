@@ -12,6 +12,8 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 from ..models.thumbs import ImageWithThumbsField
+from ..models.companyUser import CompanyUser
+from ..models.company import Company
 
 try:
     from django.utils.timezone import now as datetime_now
@@ -90,6 +92,11 @@ class RegistrationManager(models.Manager):
         new_user = User.objects.create_user(username, email, password)
         new_user.is_active = False
         new_user.save()
+
+        # emailsuffix = '@%s'%(username.split('@')[1])
+        # company = Company.objects.get(emailsuffix=emailsuffix)
+        # companyUser = CompanyUser(user=new_user,company=company)
+        # companyUser.save()
 
         registration_profile = self.create_profile(new_user)
 
