@@ -13,6 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from ..models.thumbs import ImageWithThumbsField
 from ..models.companyUser import CompanyUser
+from ..models.companyUser import BELONG_TYPE_COMPANY_USER,STATUS_ENABLE
 from ..models.company import Company
 
 try:
@@ -92,12 +93,13 @@ class RegistrationManager(models.Manager):
         new_user = User.objects.create_user(username, email, password)
         new_user.is_active = False
         new_user.save()
-
-        # emailsuffix = '@%s'%(username.split('@')[1])
-        # company = Company.objects.get(emailsuffix=emailsuffix)
-        # companyUser = CompanyUser(user=new_user,company=company)
-        # companyUser.save()
-
+        
+        emailsuffix = '@%s'%(username.split('@')[1])
+        company     = Company.objects.get(emailsuffix=emailsuffix)
+        # 员工数据后面从缓存读取
+        companyUser = CompanyUser(user=new_user,company=company,number=CompanyUser.objects.membersCount(company)+1,type = BELONG_TYPE_COMPANY_USER, status=STATUS_ENABLE)
+        companyUser.save()
+        
         registration_profile = self.create_profile(new_user)
 
         if send_email:
@@ -192,18 +194,18 @@ class RegistrationProfile(models.Model):
     """
     ACTIVATED = u"ALREADY_ACTIVATED"
     
-    user = models.ForeignKey(User, unique=True, verbose_name=_('user'))
+    user           = models.ForeignKey(User, unique=True, verbose_name=_('user'))
     activation_key = models.CharField(_('activation key'), max_length=40)
-    photos = ImageWithThumbsField(upload_to='images/%Y/%m/%d', sizes=((125,125),(200,200)))
-    sex = models.CharField(max_length=16, blank=True,choices=SEX_CHOICES)
-    description = models.CharField(max_length=128, blank=True)
-
-    objects = RegistrationManager()
+    photos         = ImageWithThumbsField(upload_to='images/%Y/%m/%d', sizes=((125,125),(200,200)))
+    sex            = models.CharField(max_length=16, blank=True,choices=SEX_CHOICES)
+    description    = models.CharField(max_length=128, blank=True)
+    
+    objects        = RegistrationManager()
     
     class Meta:
-        verbose_name = _('user profile')
+        verbose_name        = _('user profile')
         verbose_name_plural = _('user profiles')
-        db_table = u'user_profile'
+        db_table            = u'user_profile'
     
     def __unicode__(self):
         return u"Registration information for %s" % self.user
