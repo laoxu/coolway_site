@@ -1,6 +1,8 @@
 
 from django.db import models
 
+BELONG_TYPE_COMPANY_USER=u'belong'
+
 class Company(models.Model):
     id = models.IntegerField(primary_key=True)
     city_id = models.IntegerField()
@@ -12,3 +14,12 @@ class Company(models.Model):
     modify_time = models.DateTimeField(null=True, blank=True)
     class Meta:
         db_table = u'company'
+
+    def members(self):
+        return self.companyuser_set.filter(type=BELONG_TYPE_COMPANY_USER)
+
+    def membersCount(self):
+        return self.members().count()
+
+    def getNextMemberNum(self):
+        return self.membersCount()+1

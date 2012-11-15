@@ -24,16 +24,6 @@ STATUS_CHOICES = (
 )
 
 
-class CompanyUserManager(models.Manager):
-
-    def membersCount(self,company):
-        '''公司成员数量'''
-        return self.members(company).count()
-
-    def members(self,company):
-        '''公司成员'''
-        return super(CompanyUserManager, self).get_query_set().filter(type=BELONG_TYPE_COMPANY_USER, company=company)
-
 
 class CompanyUser(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -44,9 +34,6 @@ class CompanyUser(models.Model):
     status = models.CharField(max_length=21, blank=True, choices=STATUS_CHOICES)
     create_time = models.DateTimeField(null=True, blank=True)
     modify_time = models.DateTimeField(null=True, blank=True)
-
-    objects = CompanyUserManager()
-
 
     class Meta:
         db_table = u'company_user'

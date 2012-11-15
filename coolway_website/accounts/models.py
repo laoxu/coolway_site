@@ -97,7 +97,7 @@ class RegistrationManager(models.Manager):
         emailsuffix = '@%s'%(username.split('@')[1])
         company     = Company.objects.get(emailsuffix=emailsuffix)
         # 员工数据后面从缓存读取
-        companyUser = CompanyUser(user=new_user,company=company,number=CompanyUser.objects.membersCount(company)+1,type = BELONG_TYPE_COMPANY_USER, status=STATUS_ENABLE)
+        companyUser = CompanyUser(user=new_user,company=company,number=company.getNextMemberNum(),type = BELONG_TYPE_COMPANY_USER, status=STATUS_ENABLE)
         companyUser.save()
         
         registration_profile = self.create_profile(new_user)
