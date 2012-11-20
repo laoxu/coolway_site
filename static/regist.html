@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<title>酷味</title>
+	<meta name="keywords" content="酷味" />
+	<meta name="description" content="酷味" />
+	<link href="css/base.css" type="text/css" rel="stylesheet" />
+	<link href="css/common.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="js/DD_belatedPNG.js"></script> 
+    <![endif]-->
+</head>
+<body>
+    <div id="commonBg">
+    	<div class="wrapper">
+        	<div id="login" class="clearfix">
+            	<div class="regist-bg png">
+                </div>
+                <table class="opacity_border login">
+                	<tr>
+                    	<td class="opacity_bg td1" colspan="3"></td>
+                    </tr>
+                    <tr>
+                    	<td class="td1"></td>
+                        <td class="td2"> 	
+                            <div class="login-content">
+                            	<div class="regist-logo png"></div>
+                                <div class="iePosition">
+                                	<form id="regist-form">
+                                    <div class="regist-form-content">
+                                        <input type="text" class="text-input-email" id="sele" name="email" placeholder="请输入邮箱" autocomplete="off" />
+                                        <input type="password" class="text-input-pwd" name="password" placeholder="密码" />
+                                        <div class="form-error">
+                                            <span class="error">邮箱格式错误，请重新输入: )</span>
+                                        </div>
+                                        <div class="form-submit clearfix">
+                                            <a href="javascript:;" onclick="$('#regist-form').submit();" class="btn2"><span>我同意《酷味服务协议》并注册</span></a>
+                                        </div>
+                                        <div class="form-bottom">
+                                            <a href="#">我已有账号</a>
+                                            &nbsp;&nbsp;
+                                            <a href="#">查看服务协议 ></a>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                       	</td>
+                        <td class="td1"></td>
+                    </tr>
+                    <tr>
+                    	<td class="opacity_bg td1" colspan="3"></td>
+                    </tr>
+                </table>
+            </div>      	
+            <div class="footer">
+            	2012-2013 © 酷味网 京ICP备案号12345678号 
+            </div>
+        </div>
+    </div>
+	<script type="text/javascript">
+        $(document).ready(function(){
+            regist();
+        })
+    </script>
+</body>
+</html>
