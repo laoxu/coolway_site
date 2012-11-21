@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<title>酷味</title>
+	<meta name="keywords" content="酷味" />
+	<meta name="description" content="酷味" />
+	<link href="css/base.css" type="text/css" rel="stylesheet" />
+	<link href="css/common.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="js/DD_belatedPNG.js"></script> 
+    <![endif]-->
+</head>
+<body>
+    <div id="commonBg">
+    	<div id="userInfo" class="wrapper">
+        	<div class="clearfix">
+            	<div class="userinfo-logo png">
+                </div>
+                <table class="opacity_border login">
+                	<tr class="tips_tr">
+                    	<td class="opacity_bg td1" colspan="3"></td>
+                    </tr>
+                    <tr class="tips_tr">
+                    	<td class="td1"></td>
+                        <td class="td2"> 	
+                            <div class="userinfo-tips">
+                            	<div class="userinfo-tips-content png">
+                                	欢迎加入酷味！邮箱 huangxiao***@snda.com 已验证！
+                                    <span class="yellow">完善个人信息后，立即体验酷味吧！</span>
+                                </div> 
+                                <span class="btn-close"></span>       
+                            </div>
+                       	</td>
+                        <td class="td1"></td>
+                    </tr>
+                	<tr>
+                    	<td class="opacity_bg td1" colspan="3"></td>
+                    </tr>
+                    <tr>
+                    	<td class="td1"></td>
+                        <td class="td2"> 	
+                            <div class="userinfo-content">
+                            	<div class="userinfo-bg png"></div>
+                                <div class="iePosition">
+                                	<form id="userinfo-form">
+                                    <div class="form-content">
+                                    	<div class="form-content-item upload-image">
+                                        	<img src="images/header-image.gif" width="80" height="80"/>
+                                            <span class="normal-error">文件格式不正确！</span>
+                                            <div class="cover-gray"><a href="javascript:;">上传头像</a></div>
+                                            <input type="file" name="user-logo" class="hide-file" />
+                                        </div>
+                                    	<div class="form-content-item">
+                                        	<input type="text" class="text-input-name" name="user_name" placeholder="昵称（非实名制社区）" />
+                                            <span class="normal-error">用户名太长了</span>
+                                        </div>
+                                        <div class="form-content-item clearfix label-input">
+                                        	<input type="radio" name="user_sex" id="sex_m" />
+                                            <label for="sex_m">&nbsp;男</label>
+                                            <input type="radio" name="user_sex" id="sex_f" />
+                                            <label for="sex_f">&nbsp;女</label>
+                                       	</div>
+                                        <div class="form-content-item iePosition">
+                                        	<div class="select-company">
+                                            	<span class="text-select-company">盛大-北京-海淀区</span>
+                                                <span class="normal-error">您所在的公司还在封测！<a href="#" target="_blank" class="blue">领取邀请码</a></span>
+                                                <div class="select-company-popup hide"> 
+                                                    <ul class="clearfix">
+                                                        <li>盛大-上海-海淀区</li>
+                                                        <li>盛大-杭州-海淀区</li>
+                                                        <li>盛大-北京-海淀区</li>
+                                                        <li>盛大-成都-海淀区</li>
+                                                        <li>盛大-深圳-海淀区</li>
+                                                        <li>盛大-南京-海淀区</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                       	</div>
+                                        <div class="form-content-item">
+                                        	<textarea name="description" placeholder="一句话介绍下自己吧" class="text-textarea"></textarea>
+                                       	</div>
+                                        <div class="form-submit clearfix form-content-item">
+                                            <a href="javascript:;" onclick="$('#regist-form').submit();" class="btn2"><span>确认，提交我的信息</span></a>
+                                        </div> 
+                                    </div>
+                                    </form>
+                                    <div class="form-bottom">
+                                        <a href="#">< 登出此账号</a>
+                                    </div>
+                                </div>
+                            </div>
+                       	</td>
+                        <td class="td1"></td>
+                    </tr>
+                    <tr>
+                    	<td class="opacity_bg td1" colspan="3"></td>
+                    </tr>
+                </table>
+            </div>      	
+            <div class="footer">
+            	2012-2013 © 酷味网 京ICP备案号12345678号 
+            </div>
+        </div>
+    </div>
+	<script type="text/javascript">
+        $(document).ready(function(){
+            user_info();
+        })
+    </script>
+</body>
+</html>

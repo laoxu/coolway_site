@@ -87,6 +87,32 @@ function regist(){
 	email_full();
 }
 
+function user_info(){
+	if(isIE6)
+		DD_belatedPNG.fix('.png');
+	$("#userInfo .btn-close").click(function(){
+		$("#userInfo .tips_tr").fadeOut();
+	})
+	$(".select-company").toggle(
+		function(event){
+			$(".select-company-popup").addClass("select-company-open").removeClass("select-company-close");
+			$(".select-company-open").fadeIn();
+			event.stopPropagation();
+		},
+		function(event){
+			$(".select-company-popup").addClass("select-company-close").removeClass("select-company-open");
+			$(".select-company-close").fadeOut();
+			event.stopPropagation();
+		}
+	)
+	$(".select-company-popup li").click(function(){
+		$(".text-select-company").html($(this).html());
+	})
+	$("body").click(function(){
+		$(".select-company-open").trigger('click');
+	})
+}
+
 // Email自动补全
 function email_full(){	
 	var maxcount = 0; // 表示他最大的值
