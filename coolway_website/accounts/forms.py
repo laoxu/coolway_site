@@ -16,47 +16,27 @@ attrs_dict = {'class': 'required'}
 
 
 class RegistrationForm(forms.Form):
-    username = forms.RegexField(regex=r'^[\w.@+-]+$',
-                                max_length=30,
-                                widget=forms.TextInput(attrs=attrs_dict),
-                                label=_("Username"),
-                                error_messages={'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
+    username = forms.EmailField(required=True,
+                label=_("Your account email"),
+                error_messages={
+                    'required': _("You cannot leave this field blank"),
+                    'invalid': _('please enter a valid email address'),
+                    }
+                )
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
                                 label=_("Password"))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
-                                label=_("Password (again)"))
-    openCompanys = Company.objects.all()
-    company = forms.ChoiceField(widget=forms.Select(attrs=attrs_dict), choices=[(company.emailsuffix,company.emailsuffix) for company in openCompanys],label="choose company")
-    
+   
 
-
-class RegistrationFormUniqueEmail(RegistrationForm):
-
-    openCompanys = Company.objects.all();
-
-    open_domains = range(0)
-
-    for company in openCompanys:
-        open_domains.append(company.emailsuffix)
-
-    def clean(self):
-        """
-        Validate that the supplied email address is unique for the
-        site.
-        
-        """
-
-        if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data:
-            if self.cleaned_data['password1'] != self.cleaned_data['password2']:
-                raise forms.ValidationError(_("The two password fields didn't match."))
-
-        # 这里跳转到公司注册申请页面 
-        if self.cleaned_data['company'] not in self.open_domains:
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        emailsuffix = '@%s'%(username.split('@')[1])
+        if emailsuffix not in Company.objects.openDomains():
             raise forms.ValidationError(_("not open register for your company,please apply"))
-
-        if User.objects.filter(email__iexact='%s%s'%(self.cleaned_data['username'],self.cleaned_data['company'])):
+       
+        if User.objects.filter(email__iexact=username):
             raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
-        return self.cleaned_data
+        return username
+   
 
 class UserProfile(forms.Form):
     sex = forms.ChoiceField(widget=forms.Select(attrs=attrs_dict), choices=SEX_CHOICES,label="sex")

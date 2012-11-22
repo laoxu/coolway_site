@@ -3,7 +3,7 @@ from django.contrib.sites.models import RequestSite
 from django.contrib.sites.models import Site
 
 from coolway_website.accounts import signals
-from coolway_website.accounts.forms import RegistrationFormUniqueEmail
+from coolway_website.accounts.forms import RegistrationForm
 from coolway_website.accounts.models import RegistrationProfile
 
 
@@ -11,7 +11,7 @@ class DefaultBackend(object):
  
     def register(self, request, **kwargs):
        
-        username, password = '%s%s'%(kwargs['username'],kwargs['company']), kwargs['password1']
+        username, password = kwargs['username'], kwargs['password1']
         email = username
         if Site._meta.installed:
             site = Site.objects.get_current()
@@ -38,7 +38,7 @@ class DefaultBackend(object):
         return getattr(settings, 'REGISTRATION_OPEN', True)
 
     def get_form_class(self, request):
-        return RegistrationFormUniqueEmail
+        return RegistrationForm
 
     def post_registration_redirect(self, request, user):
     

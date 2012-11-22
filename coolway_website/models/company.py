@@ -1,7 +1,17 @@
-
+# -*- encoding: utf-8 -*-
 from django.db import models
 
 BELONG_TYPE_COMPANY_USER=u'belong'
+
+class CompanyManager(models.Manager):
+
+    def openDomains(self):
+        '''获得开通公司邮箱后缀列表'''
+        open_domains = range(0)
+
+        for company in self.all():
+            open_domains.append(company.emailsuffix)
+        return open_domains
 
 class Company(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -12,6 +22,9 @@ class Company(models.Model):
     image = models.CharField(max_length=768, blank=True)
     create_time = models.DateTimeField(null=True, blank=True)
     modify_time = models.DateTimeField(null=True, blank=True)
+
+    objects = CompanyManager()
+
     class Meta:
         db_table = u'company'
 
