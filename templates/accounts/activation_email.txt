@@ -2,6 +2,6 @@
 
 请你在 {{ expiration_days }} 天内点下面的链接激活你的账号:
 
-http://127.0.0.1:8000{% url accounts_activate activation_key %}
+{{ site.domain }}{% url accounts_activate activation_key %}
 
 酷味产品经理:黄小亮
