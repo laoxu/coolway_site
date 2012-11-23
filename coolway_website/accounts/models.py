@@ -199,7 +199,8 @@ class RegistrationProfile(models.Model):
     photos         = ImageWithThumbsField(upload_to='images/%Y/%m/%d', sizes=((125,125),(200,200)))
     sex            = models.CharField(max_length=16, blank=True,choices=SEX_CHOICES)
     description    = models.CharField(max_length=128, blank=True)
-    
+    nickname       = models.CharField(max_length=64,blank=False)
+
     objects        = RegistrationManager()
     
     class Meta:
@@ -209,6 +210,10 @@ class RegistrationProfile(models.Model):
     
     def __unicode__(self):
         return u"Registration information for %s" % self.user
+
+    def headImage(self):
+        headImage = self.photos.url.split('.')
+        return '%s.125x125.%s'%(headImage[0],headImage[1])
     
     def activation_key_expired(self):
         """

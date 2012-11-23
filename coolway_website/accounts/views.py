@@ -90,26 +90,24 @@ def register(request, backend, success_url=None, form_class=None,
 @login_required
 def profile(request,template_name='accounts/user_profile.html'):
 
-    if request.user.is_authenticated():
-        print request.user.get_profile().activation_key
-
-    
     if request.method == 'POST':
         form = UserProfile(request.POST)
         if form.is_valid():
             sex = form.cleaned_data['sex']
             description = form.cleaned_data['description']
+            nickname = form.cleaned_data['nickname']
             profile = request.user.get_profile()
             if 'photos' in request.FILES:
                 profile.photos = request.FILES["photos"]
-                profile.sex = form.cleaned_data['sex']
-                profile.description = form.cleaned_data['description']
 
-            if sex in SEX_CHOICES:
-                profile.sex = sex;
+            if sex !=None and sex !="":
+                profile.sex = sex
             
             if description !=None and description !="":
-                profile.description = description;
+                profile.description = description
+
+            if nickname !=None and nickname !='':
+                profile.nickname = nickname
 
             profile.save()
         else:

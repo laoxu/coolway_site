@@ -42,6 +42,11 @@ class UserProfile(forms.Form):
     sex = forms.ChoiceField(widget=forms.Select(attrs=attrs_dict), choices=SEX_CHOICES,label="sex")
     photos = forms.ImageField(required=False)
     description = forms.CharField(widget=forms.Textarea(attrs=attrs_dict),label=_("description"))
-
+    nickname = forms.CharField(required=True,
+                label=_("nickname"),
+                error_messages={
+                    'required': _("nickname field blank")
+                    }
+                )
     def clean(self):
         return self.cleaned_data
