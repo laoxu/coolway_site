@@ -196,7 +196,7 @@ class RegistrationProfile(models.Model):
     
     user           = models.ForeignKey(User, unique=True, verbose_name=_('user'))
     activation_key = models.CharField(_('activation key'), max_length=40)
-    photos         = ImageWithThumbsField(upload_to='images/%Y/%m/%d', sizes=((125,125)))
+    photos         = ImageWithThumbsField(upload_to='images/%Y/%m/%d', sizes=((125,125),(200,200)))
     sex            = models.CharField(max_length=16, blank=True,choices=SEX_CHOICES)
     description    = models.CharField(max_length=128, blank=True)
     nickname       = models.CharField(max_length=64,blank=False)
@@ -211,9 +211,8 @@ class RegistrationProfile(models.Model):
     def __unicode__(self):
         return u"Registration information for %s" % self.user
 
-    def headImage(self):
-        #self.photos.url_125x125 
-        return self.photos.url
+    def headImage(self): 
+        return self.photos.url_125x125
     
     def activation_key_expired(self):
         """
