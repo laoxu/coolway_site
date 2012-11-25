@@ -212,7 +212,8 @@ class RegistrationProfile(models.Model):
         return u"Registration information for %s" % self.user
 
     def headImage(self): 
-        return self.photos.url_125x125
+        #self.photos.url_125x125
+        return self.photos.url
     
     def activation_key_expired(self):
         """
