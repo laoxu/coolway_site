@@ -54,9 +54,9 @@
                                                 
 
                                             {% if user.get_profile.photos %}
-                                                 <img src="../../{{ user.get_profile.headImage }}" width="80" height="80"/>
+                                                 <img src="{{ site.domain }}/{{ user.get_profile.headImage }}" width="80" height="80"/>
                                             {% else %}
-                                                 <img src="../../media/images/header-image.gif" width="80" height="80"/>
+                                                 <img src="{{ site.domain }}/media/images/header-image.gif" width="80" height="80"/>
                                             {% endif %}
                                            
                                            
