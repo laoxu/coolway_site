@@ -1,0 +1,64 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+    <div id="commonBg">
+    	<div class="wrapper">
+        	<div id="login" class="clearfix">
+            	<div class="login-bg png">
+                </div>
+                <table class="opacity_border login">
+                	<tr>
+                    	<td class="opacity_bg td1" colspan="3"></td>
+                    </tr>
+                    <tr>
+                    	<td class="td1"></td>
+                        <td class="td2"> 	
+                            <div class="login-content">
+                            	<div class="login-logo png"></div>
+                                <div class="iePosition">
+                                    <form id="login-form" method="post" action="{% url django.contrib.auth.views.login %}">{% csrf_token %}
+                                    <div class="login-form-content">
+
+                                       
+                                        <input type="text" class="text-input-email" name="username" placeholder="请输入邮箱" />
+                                        <input type="password" class="text-input-pwd" name="password" placeholder="密码" />
+                                        {% if form.errors %}
+                                            <div class="form-error">
+                                                <span class="error">邮箱或密码错误，请重新输入: )</span>
+                                            </div>
+                                        {% endif %}
+                                       
+                                        <div class="form-submit clearfix">
+                                            <input type="submit" name="login-submit" class="login-submit-btn" value="" />
+                                            <input type="checkbox" name="remember-me" id="remember-me" />
+                                            <label for="remember-me">&nbsp;下次自动登陆</label>
+                                        </div>
+                                        <div class="form-bottom">
+                                            <a href="{% url auth_password_reset %}">忘记密码</a> 
+                                            &nbsp;&nbsp;
+                                            <a href="{% url accounts_register %}">注册</a>
+                                        </div>
+                                        <input type="hidden" name="next" value="{{ next }}" />
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                       	</td>
+                        <td class="td1"></td>
+                    </tr>
+                    <tr>
+                    	<td class="opacity_bg td1" colspan="3"></td>
+                    </tr>
+                </table>
+            </div>      	
+            <div class="footer">
+            	2012-2013 © 酷味网 京ICP备案号12345678号 
+            </div>
+        </div>
+    </div>
+	<script type="text/javascript">
+        $(document).ready(function(){
+            login();
+        })
+    </script>
+{% endblock %}
