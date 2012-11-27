@@ -1,5 +1,5 @@
 ﻿{% extends "picture_base.html" %}
-{% load upload_tags %}
+{% load upload_head_image_tags %}
 
 {% block content %}
  
@@ -128,7 +128,7 @@
         })
     </script>
 
-{% upload_js %}
+{% upload_head_image_js %}
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="{{ MEDIA_URL }}js/jquery.ui.widget.js"></script>

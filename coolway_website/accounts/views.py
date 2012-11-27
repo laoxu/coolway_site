@@ -138,6 +138,11 @@ def uploadHeadImage(request):
         response = JSONResponse(data, {}, response_mimetype(request))
         response['Content-Disposition'] = 'inline; filename=files.json'
         return response
+    
+    else:
+        response = JSONResponse([], {}, response_mimetype(request))
+        response['Content-Disposition'] = 'inline; filename=files.json'
+        return response
 
 class JSONResponse(HttpResponse):
     """JSON response class."""
