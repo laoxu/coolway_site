@@ -23,14 +23,18 @@ $(function () {
         {
             autoUpload: true,
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-            maxNumberOfFiles :1
+            limitConcurrentUploads: 1,
+
         },
         'redirect',
         window.location.href.replace(
             /\/[^\/]*$/,
             '/cors/result.html?%s'
         )
-    );
+    ).bind('fileuploadcompleted', function (e, data) {
+        console.log('fileuploadcompleted');
+        $("#user_head_image").attr("src",data.result[0].thumbnail_url); 
+    });
 
     if (window.location.hostname === 'blueimp.github.com') {
         // Demo settings:

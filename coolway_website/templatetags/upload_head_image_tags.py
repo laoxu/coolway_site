@@ -38,16 +38,6 @@ def upload_head_image_js():
 </script>
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
-{% for (var i=0, file; file=o.files[i]; i++) { %}
-        {% if (file.error) { %}
-            <span class="normal-error">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}
-        {% } else { %}
-            {% if (file.thumbnail_url) { %}
-            <img src="{%=file.thumbnail_url%}" width="80" height="80"/>
-            {% } %}
-            
-        {% } %}
-       
-{% } %}
+
 </script>
 """

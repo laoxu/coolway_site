@@ -40,9 +40,9 @@
                                         <form id="fileupload" method="post" action="/accounts/uploadHeadImage/" enctype="multipart/form-data">{% csrf_token %}
                                         <div class="form-content-item upload-image">
                                             {% if user.get_profile.photos %}
-                                                 <img src="{{ user.get_profile.headImage }}" width="80" height="80"/>
+                                                 <img id="user_head_image" src="{{ user.get_profile.headImage }}" width="80" height="80"/>
                                             {% else %}
-                                                 <img src="/media/images/header-image.gif" width="80" height="80"/>
+                                                 <img id="user_head_image" src="/media/images/header-image.gif" width="80" height="80"/>
                                             {% endif %}
                                 
                                             <div class="cover-gray"><a href="javascript:;">上传头像</a></div>
