@@ -1,6 +1,8 @@
-﻿{% extends "base.html" %}
+﻿{% extends "picture_base.html" %}
+{% load upload_tags %}
 
 {% block content %}
+ 
     <div id="commonBg">
         <div id="userInfo" class="wrapper">
             <div class="clearfix">
@@ -33,18 +35,15 @@
                             <div class="userinfo-content">
                                 <div class="userinfo-bg png"></div>
                                 <div class="iePosition">
-                                    <form id="userinfo-form" method='post' action='' enctype="multipart/form-data" >{% csrf_token %}
+                                    
                                     <div class="form-content">
+                                        <form id="fileupload" method="post" action="/upload/new/" enctype="multipart/form-data">{% csrf_token %}
                                         <div class="form-content-item upload-image">
-                                         
-                                                
-
                                             {% if user.get_profile.photos %}
                                                  <img src="{{ site.domain }}/{{ user.get_profile.headImage }}" width="80" height="80"/>
                                             {% else %}
                                                  <img src="{{ site.domain }}/media/images/header-image.gif" width="80" height="80"/>
                                             {% endif %}
-                                           
                                            
 
                                             {% if form.photos.errors  %}
@@ -53,8 +52,16 @@
                                 
                                             <div class="cover-gray"><a href="javascript:;">上传头像</a></div>
                                         
-                                            <input type="file" name="photos" class="hide-file" />
+                                            <input type="file" name="file" class="hide-file" />
+                                         
+                                            <table class="table table-striped">
+                                                <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery">
+                                                </tbody>
+                                            </table>
+                                        
                                         </div>
+                                        </form>
+                                        <form id="userinfo-form" method='post' action='' enctype="multipart/form-data" >{% csrf_token %}
                                         <div class="form-content-item">
                                             <input type="text" class="text-input-name" name="nickname" value="{{ user.get_profile.nickname }}"  placeholder="昵称（非实名制社区）" />
 
@@ -94,8 +101,9 @@
                                         <div class="form-submit clearfix form-content-item">
                                             <a href="javascript:;" onclick="$('#userinfo-form').submit();" class="btn2"><span>确认，提交我的信息</span></a>
                                         </div> 
+                                        </form>
                                     </div>
-                                    </form>
+                                    
                                     <div class="form-bottom">
                                         <a href="#">< 登出此账号</a>
                                     </div>
@@ -119,4 +127,22 @@
             user_info();
         })
     </script>
+
+{% upload_js %}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.ui.widget.js"></script>
+<script src="{{ MEDIA_URL }}js/tmpl.min.js"></script>
+<script src="{{ MEDIA_URL }}js/load-image.min.js"></script>
+<script src="{{ MEDIA_URL }}js/canvas-to-blob.min.js"></script>
+<script src="{{ MEDIA_URL }}js/bootstrap.min.js"></script>
+<script src="{{ MEDIA_URL }}js/bootstrap-image-gallery.min.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.iframe-transport.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.fileupload.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.fileupload-fp.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.fileupload-ui.js"></script>
+<script src="{{ MEDIA_URL }}js/locale.js"></script>
+<script src="{{ MEDIA_URL }}js/main.js"></script>
+<script src="{{ MEDIA_URL }}js/csrf.js"></script>
+<script src="{{ MEDIA_URL }}js/common.js"></script>
 {% endblock %}

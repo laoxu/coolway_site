@@ -1,0 +1,45 @@
+{% extends "picture_base.html" %}
+{% load upload_tags %}
+
+{% block content %}
+    
+    <form id="fileupload" method="post" action="/upload/new/" enctype="multipart/form-data">{% csrf_token %}
+        <div class="row fileupload-buttonbar">
+            <div class="span7">
+                <span class="btn btn-primary fileinput-button">
+                    <i class="icon-plus icon-white"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="file" multiple>
+                </span>
+                <button type="submit" class="btn btn-success start">
+                    <i class="icon-upload icon-white"></i>
+                    <span>Start upload</span>
+                </button>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery">
+            </tbody>
+        </table>
+    </form>
+
+
+{% upload_js %}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.ui.widget.js"></script>
+<script src="{{ MEDIA_URL }}js/tmpl.min.js"></script>
+<script src="{{ MEDIA_URL }}js/load-image.min.js"></script>
+<script src="{{ MEDIA_URL }}js/canvas-to-blob.min.js"></script>
+<script src="{{ MEDIA_URL }}js/bootstrap.min.js"></script>
+<script src="{{ MEDIA_URL }}js/bootstrap-image-gallery.min.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.iframe-transport.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.fileupload.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.fileupload-fp.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.fileupload-ui.js"></script>
+<script src="{{ MEDIA_URL }}js/locale.js"></script>
+<script src="{{ MEDIA_URL }}js/main.js"></script>
+<script src="{{ MEDIA_URL }}js/csrf.js"></script>
+<script src="{{MEDIA_URL}}js/jquery.js"></script>
+<script src="{{MEDIA_URL}}js/common.js"></script>
+{% endblock %}

@@ -8,7 +8,7 @@ class Picture(models.Model):
     # problems installing pillow, use a more generic FileField instead.
 
     #file = models.FileField(upload_to="images")
-    file = models.ImageField(upload_to="images")
+    file = models.ImageField(upload_to="images/%Y/%m/%d")
     slug = models.SlugField(max_length=50, blank=True)
 
     def __unicode__(self):
