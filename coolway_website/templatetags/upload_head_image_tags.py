@@ -39,19 +39,15 @@ def upload_head_image_js():
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade">
         {% if (file.error) { %}
-            <td></td>
-            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+            <span class="normal-error">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}
         {% } else { %}
-            <td class="preview">{% if (file.thumbnail_url) { %}
-                <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
-            {% } %}</td>
+            {% if (file.thumbnail_url) { %}
+            <img src="{%=file.thumbnail_url%}" width="80" height="80"/>
+            {% } %}
             
         {% } %}
        
-    </tr>
-    alert('ok');
 {% } %}
 </script>
 """

@@ -20,7 +20,11 @@ $(function () {
 
     // Enable iframe cross-domain access via redirect option:
     $('#fileupload').fileupload(
-        'option',
+        {
+            autoUpload: true,
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            maxNumberOfFiles :1
+        },
         'redirect',
         window.location.href.replace(
             /\/[^\/]*$/,
