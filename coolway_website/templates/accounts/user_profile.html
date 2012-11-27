@@ -37,12 +37,12 @@
                                 <div class="iePosition">
                                     
                                     <div class="form-content">
-                                        <form id="fileupload" method="post" action="/upload/new/" enctype="multipart/form-data">{% csrf_token %}
+                                        <form id="fileupload" method="post" action="/accounts/uploadHeadImage/" enctype="multipart/form-data">{% csrf_token %}
                                         <div class="form-content-item upload-image">
                                             {% if user.get_profile.photos %}
-                                                 <img src="{{ site.domain }}/{{ user.get_profile.headImage }}" width="80" height="80"/>
+                                                 <img src="{{ user.get_profile.headImage }}" width="80" height="80"/>
                                             {% else %}
-                                                 <img src="{{ site.domain }}/media/images/header-image.gif" width="80" height="80"/>
+                                                 <img src="/media/images/header-image.gif" width="80" height="80"/>
                                             {% endif %}
                                            
 

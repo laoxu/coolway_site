@@ -5,6 +5,7 @@ from django.views.generic.simple import direct_to_template
 from views import activate
 from views import register
 from views import profile
+from views import uploadHeadImage
 from django.contrib.auth import views as auth_views
 from views import user_page
 
@@ -68,4 +69,5 @@ urlpatterns = patterns('',
                            profile,
                            name='accounts_profile'),
                        url(r'^query/$',user_page),
+                       url(r'^uploadHeadImage/$', uploadHeadImage, {}, 'accounts_profile'),
                       )

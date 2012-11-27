@@ -213,7 +213,7 @@ class RegistrationProfile(models.Model):
 
     def headImage(self): 
         #self.photos.url_125x125
-        return self.photos.url
+        return self.photos.url_125x125.replace("/media", "")
     
     def activation_key_expired(self):
         """

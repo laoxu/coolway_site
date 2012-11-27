@@ -1,9 +1,11 @@
 # -*- encoding: utf-8 -*-
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.utils import simplejson
+from django.core.urlresolvers import reverse
 
 from PIL import Image
 import uuid
@@ -97,8 +99,7 @@ def profile(request,template_name='accounts/user_profile.html'):
             description = form.cleaned_data['description']
             nickname = form.cleaned_data['nickname']
             profile = request.user.get_profile()
-            if 'photos' in request.FILES:
-                profile.photos = request.FILES["photos"]
+           
 
             if sex !=None and sex !="":
                 profile.sex = sex
@@ -116,3 +117,30 @@ def profile(request,template_name='accounts/user_profile.html'):
         form = UserProfile()
 
     return render_to_response(template_name,{'form': form},context_instance=RequestContext(request))
+
+def response_mimetype(request):
+    if "application/json" in request.META['HTTP_ACCEPT']:
+        return "application/json"
+    else:
+        return "text/plain"
+
+@login_required
+def uploadHeadImage(request):
+    if request.method == 'POST':
+        f = request.FILES.get('file')
+        profile = request.user.get_profile()
+        profile.photos = f
+        profile.save()
+        # 多了前缀/media
+        fileurl = profile.headImage()
+        print fileurl
+        data = [{'name': fileurl, 'url':  fileurl, 'thumbnail_url':  fileurl, 'delete_url': fileurl, 'delete_type': "DELETE"}]
+        response = JSONResponse(data, {}, response_mimetype(request))
+        response['Content-Disposition'] = 'inline; filename=files.json'
+        return response
+
+class JSONResponse(HttpResponse):
+    """JSON response class."""
+    def __init__(self,obj='',json_opts={},mimetype="application/json",*args,**kwargs):
+        content = simplejson.dumps(obj,**json_opts)
+        super(JSONResponse,self).__init__(content,mimetype,*args,**kwargs)
