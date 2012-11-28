@@ -20,7 +20,7 @@
                                     <div class="login-form-content">
 
                                        
-                                        <input type="text" class="text-input-email" name="username" placeholder="请输入邮箱" />
+                                        <input type="text" class="text-input-email" name="username" placeholder="公司邮箱" />
                                         <input type="password" class="text-input-pwd" name="password" placeholder="密码" />
                                         {% if form.errors %}
                                             <div class="form-error">
@@ -31,7 +31,7 @@
                                         <div class="form-submit clearfix">
                                             <input type="submit" name="login-submit" class="login-submit-btn" value="" />
                                             <input type="checkbox" name="remember-me" id="remember-me" />
-                                            <label for="remember-me">&nbsp;下次自动登陆</label>
+                                            <label for="remember-me">&nbsp;下次自动登录</label>
                                         </div>
                                         <div class="form-bottom">
                                             <a href="{% url auth_password_reset %}">忘记密码</a> 
