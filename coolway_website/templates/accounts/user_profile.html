@@ -18,9 +18,8 @@
                         <td class="td2">    
                             <div class="userinfo-tips">
                                 <div class="userinfo-tips-content png">
-                                    欢迎加入酷味！邮箱 {{ user.username }} 已验证！
-
-                                    <span class="yellow">完善个人信息后，立即体验酷味吧！</span>
+                                    欢迎加入酷味。
+                                    <span class="yellow">完善个人信息，立即体验酷味！</span>
                                 </div> 
                                 <span class="btn-close"></span>       
                             </div>
@@ -59,7 +58,7 @@
                                         </form>
                                         <form id="userinfo-form" method='post' action='' enctype="multipart/form-data" >{% csrf_token %}
                                         <div class="form-content-item">
-                                            <input type="text" class="text-input-name" name="nickname" value="{{ user.get_profile.nickname }}"  placeholder="昵称（非实名制社区）" />
+                                            <input type="text" class="text-input-name" name="nickname" value="{{ user.get_profile.nickname }}"  placeholder="姓名" />
 
                                             {% if form.nickname.errors  %}
                                             <span class="normal-error">{{ form.nickname.errors.as_text }}</span>
@@ -95,7 +94,7 @@
                                              <textarea name="description" placeholder="一句话介绍下自己吧" class="text-textarea">{{ user.get_profile.description }}</textarea>
                                         </div>
                                         <div class="form-submit clearfix form-content-item">
-                                            <a href="javascript:;" onclick="$('#userinfo-form').submit();" class="btn2"><span>确认，提交我的信息</span></a>
+                                            <a href="javascript:;" onclick="$('#userinfo-form').submit();" class="btn2"><span>确认，提交信息</span></a>
                                         </div> 
                                         </form>
                                     </div>

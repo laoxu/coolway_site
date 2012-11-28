@@ -19,7 +19,7 @@
                                 	<form id="regist-form" method='post' action=''>{% csrf_token %}
                                     <div class="regist-form-content">
                                         
-                                        <input type="text" class="text-input-email" id="sele" name="username" placeholder="请输入邮箱" autocomplete="off" />
+                                        <input type="text" class="text-input-email" id="sele" name="username" placeholder="公司邮箱" autocomplete="off" />
 
                                         <input type="password" class="text-input-pwd" name="password1" placeholder="密码" />
                                         
@@ -38,9 +38,9 @@
                                             <a href="javascript:;" onclick="$('#regist-form').submit();" class="btn2"><span>我同意《酷味服务协议》并注册</span></a>
                                         </div>
                                         <div class="form-bottom">
-                                            <a href="{% url auth_login %}">我已有账号</a>
+                                            <a href="{% url auth_login %}">已有账号</a>
                                             &nbsp;&nbsp;
-                                            <a href="#">查看服务协议 ></a>
+                                            <a href="#">查看《酷味服务协议》 ></a>
                                         </div>
                                     </div>
                                     </form>
